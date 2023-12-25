@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Замовлення столика</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        .table {
+            position: absolute;
+            border: 1px solid black;
+            text-align: center;
+            line-height: 50px;
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+        }
+        .table.selected {
+            background-color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <script>
+        $('.table').click(function() {
+            $(this).toggleClass('selected');
+            var selectedTables = $('.table.selected').map(function() {
+                return $(this).data('id');
+            }).get();
+            $('#id_table').val(selectedTables);
+        });
+    </script>
+</body>
+</html>
